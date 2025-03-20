@@ -1,4 +1,6 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,6 +78,19 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        color: Color.fromRGBO(42, 41, 41, 1),
+        backgroundColor: Color.fromRGBO(152, 152, 152, 1),
+        animationDuration: Duration(milliseconds: 300),
+        items: const <Widget>[
+          Icon(HugeIcons.strokeRoundedHome02, size: 30,color: Color.fromRGBO(255, 49, 49, 1),),
+          Icon(HugeIcons.strokeRoundedTriangle, size: 30,color: Color.fromRGBO(255, 49, 49, 1)),
+          Icon(HugeIcons.strokeRoundedIceCubes, size: 30,color: Color.fromRGBO(255, 49, 49, 1)),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
