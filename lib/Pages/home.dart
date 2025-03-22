@@ -1,7 +1,7 @@
-import 'package:athlete_360/Widgets/glow_button.dart';
+import 'package:athlete_360/Widgets/glow_button_updated.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:gradient_coloured_buttons/gradient_coloured_buttons.dart';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color.fromRGBO(18, 18, 18, 1),
           extendBody: true,
           appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            backgroundColor: Color.fromRGBO(42, 41, 41, 1),
             title: Text(widget.title),
           ),
           body: Column(
@@ -96,12 +96,21 @@ class _MyHomePageState extends State<MyHomePage> {
               // Gradient Buttons
               Column(
                 children: [
+                  // Book a Coach btn 
                   GlowButton(
-                    text: "Book a Coach",
-                    textAlignment: Alignment.center,
-                    textStyle: TextStyle(
+                    headingText: "Book a Coach",
+                    buttonText: 'Find Your Best Coach to get trained', // Updated to use buttonText
+                    headingTextAlignment: Alignment.centerLeft, // Updated alignment
+                    headingTextPadding: EdgeInsets.only(left: 5), // Updated padding
+                    buttonTextAlignment: Alignment.centerLeft, // Updated alignment
+                    buttonTextPadding: EdgeInsets.only(left: 5), // Updated padding
+                    headingTextStyle: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
+                      fontSize: 20, // Updated font size for heading
+                    ),
+                    buttonTextStyle: TextStyle( // New style for button text
+                      color: Colors.black54,
                       fontSize: 15,
                     ),
                     gradientColors: [Color.fromRGBO(218, 190, 104, 1), Color.fromRGBO(255, 255, 255, 1)],
@@ -109,8 +118,49 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 100,
                     borderRadius: 30.0,
                     onPressed: () {
-                      print("GradientButton is Pressed");
+                      print("Book a Coach is Pressed");
                     },
+                  ),
+                  //Book a Venue btn
+                  GlowButton(
+                    headingText: "Book a Venue",
+                    buttonText: 'Find Your Best Coach to get trained', // Updated to use buttonText
+                    headingTextAlignment: Alignment.centerLeft, // Updated alignment
+                    headingTextPadding: EdgeInsets.only(left: 5), // Updated padding
+                    buttonTextAlignment: Alignment.centerLeft, // Updated alignment
+                    buttonTextPadding: EdgeInsets.only(left: 5), // Updated padding
+                    headingTextStyle: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20, // Updated font size for heading
+                    ),
+                    buttonTextStyle: TextStyle( // New style for button text
+                      color: Colors.black54,
+                      fontSize: 15,
+                    ),
+                    gradientColors: [Color.fromRGBO(42, 183, 183, 1), Color.fromRGBO(255, 255, 255, 1)],
+                    width: 500,
+                    height: 100,
+                    borderRadius: 30.0,
+                    onPressed: () {
+                      print("Book a Coach is Pressed");
+                    },
+                  ),
+                ],
+              ),
+              // Athletic events section 
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Athletic Events',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

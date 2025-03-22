@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GlowButton extends StatelessWidget {
+  final String headingText;
   final String text;
   final VoidCallback onPressed;
   final List<Color> gradientColors;
@@ -13,6 +14,7 @@ class GlowButton extends StatelessWidget {
 
   const GlowButton({
     Key? key,
+    required this.headingText,
     required this.text,
     required this.onPressed,
     this.gradientColors = const [Colors.blue, Colors.green],
@@ -20,7 +22,7 @@ class GlowButton extends StatelessWidget {
     this.height = 50.0,
     this.borderRadius = 8.0,
     this.textAlignment = Alignment.center,
-    this.textPadding = const EdgeInsets.only(top: 8.0, left: 8.0), // Added padding
+    this.textPadding = const EdgeInsets.only(top: 0, left: 8.0), // Added padding
     this.textStyle = const TextStyle(color: Colors.white, fontSize: 16.0),
   }) : super(key: key);
 
@@ -50,13 +52,13 @@ class GlowButton extends StatelessWidget {
           child: Container(
             width: width,
             height: height,
-            alignment: textAlignment,
+            // alignment: textAlignment,
             child: Padding(
               padding: textPadding,
               child: Align(
                 alignment: textAlignment,
                 child: Text(
-                  text,
+                  headingText,
                   style: textStyle,
                 ),
               ),
