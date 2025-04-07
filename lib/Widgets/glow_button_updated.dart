@@ -8,9 +8,12 @@ class GlowButton extends StatelessWidget {
   final double width;
   final double height;
   final double borderRadius;
-  final EdgeInsetsGeometry headingTextPadding; // New property for heading text padding
-  final Alignment headingTextAlignment; // New property for heading text alignment
-  final EdgeInsetsGeometry buttonTextPadding; // New property for button text padding
+  final EdgeInsetsGeometry
+  headingTextPadding; // New property for heading text padding
+  final Alignment
+  headingTextAlignment; // New property for heading text alignment
+  final EdgeInsetsGeometry
+  buttonTextPadding; // New property for button text padding
   final Alignment buttonTextAlignment; // New property for button text alignment
   final TextStyle headingTextStyle; // New property for heading text style
   final TextStyle buttonTextStyle; // New property for button text style
@@ -25,11 +28,23 @@ class GlowButton extends StatelessWidget {
     this.height = 50.0,
     this.borderRadius = 8.0,
     this.headingTextAlignment = Alignment.center, // Default alignment
-    this.headingTextPadding = const EdgeInsets.only(top: 0, left: 8.0), // Default padding
+    this.headingTextPadding = const EdgeInsets.only(
+      top: 0,
+      left: 8.0,
+    ), // Default padding
     this.buttonTextAlignment = Alignment.center, // Default alignment
-    this.buttonTextPadding = const EdgeInsets.only(top: 0, left: 8.0), // Default padding
-    this.headingTextStyle = const TextStyle(color: Colors.white, fontSize: 20.0), // Default style
-    this.buttonTextStyle = const TextStyle(color: Colors.white, fontSize: 16.0), // Default style
+    this.buttonTextPadding = const EdgeInsets.only(
+      top: 0,
+      left: 8.0,
+    ), // Default padding
+    this.headingTextStyle = const TextStyle(
+      color: Colors.white,
+      fontSize: 20.0,
+    ), // Default style
+    this.buttonTextStyle = const TextStyle(
+      color: Colors.white,
+      fontSize: 16.0,
+    ), // Default style
   }) : super(key: key);
 
   @override
@@ -59,27 +74,22 @@ class GlowButton extends StatelessWidget {
           child: Container(
             width: width,
             height: height,
-            child: Column( // Use Column to stack texts
+            child: Column(
+              // Use Column to stack texts
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: headingTextPadding,
                   child: Align(
                     alignment: headingTextAlignment,
-                    child: Text(
-                      headingText,
-                      style: headingTextStyle,
-                    ),
+                    child: Text(headingText, style: headingTextStyle),
                   ),
                 ),
                 Padding(
                   padding: buttonTextPadding,
                   child: Align(
                     alignment: buttonTextAlignment,
-                    child: Text(
-                      buttonText,
-                      style: buttonTextStyle,
-                    ),
+                    child: Text(buttonText, style: buttonTextStyle),
                   ),
                 ),
               ],
