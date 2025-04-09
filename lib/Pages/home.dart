@@ -1,4 +1,5 @@
 import 'package:athlete_360/Widgets/glow_button_updated.dart';
+import 'package:athlete_360/Widgets/customNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
@@ -166,30 +167,49 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-          bottomNavigationBar: CurvedNavigationBar(
-            key: navigationKey,
-            color: Color.fromRGBO(42, 41, 41, 1),
-            backgroundColor: Colors.transparent,
-            animationDuration: Duration(milliseconds: 300),
-            items: const <Widget>[
-              Icon(
-                HugeIcons.strokeRoundedHome02,
-                size: 30,
-                color: Color.fromRGBO(255, 49, 49, 1),
-              ),
-              Icon(
-                HugeIcons.strokeRoundedTriangle,
-                size: 30,
-                color: Color.fromRGBO(255, 49, 49, 1),
-              ),
-              Icon(
-                HugeIcons.strokeRoundedIceCubes,
-                size: 30,
-                color: Color.fromRGBO(255, 49, 49, 1),
-              ),
-            ],
-            onTap: (index) {
-              //Handle button tap
+          // bottomNavigationBar: CurvedNavigationBar(
+          //   key: navigationKey,
+          //   color: Color.fromRGBO(42, 41, 41, 1),
+          //   backgroundColor: Colors.transparent,
+          //   animationDuration: Duration(milliseconds: 300),
+          //   items: const <Widget>[
+          //     Icon(
+          //       HugeIcons.strokeRoundedHome02,
+          //       size: 30,
+          //       color: Color.fromRGBO(255, 49, 49, 1),
+          //     ),
+          //     Icon(
+          //       HugeIcons.strokeRoundedTriangle,
+          //       size: 30,
+          //       color: Color.fromRGBO(255, 49, 49, 1),
+          //     ),
+          //     Icon(
+          //       HugeIcons.strokeRoundedIceCubes,
+          //       size: 30,
+          //       color: Color.fromRGBO(255, 49, 49, 1),
+          //     ),
+          //   ],
+          //   onTap: (index) {
+          //     //Handle button tap
+          //   },
+          // ),
+          bottomNavigationBar: CustomNavigationBar(
+            activeIconColor: Color.fromRGBO(255, 49, 49, 1),
+            inactiveIconColor: Color.fromRGBO(255, 255, 255, 1),
+            onHomePressed: () {
+              
+            },
+            onEventsPressed: () {
+              // Handle events button press
+            },
+            onVenuesPressed: () {
+              // Handle venues button press
+            },
+            onMessagesPressed: () {
+              // Handle messages button press
+            },
+            onCenterPressed: () {
+              // Handle center button press
             },
           ),
         ),
