@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import 'Pages/coach_selection.dart';
 import 'Pages/base.dart';
+import 'Pages/gettingstarted.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,22 +33,35 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(18, 18, 18, 1)),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color.fromRGBO(18, 18, 18, 1),
+        ),
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       routerConfig: _router,
     );
   }
-  final GoRouter _router =GoRouter(
-    initialLocation: "/",
-    errorBuilder: (context, state) => Scaffold(
-      body: Center(
-        child: Text("Error: ${state.error}"),
-      ),
-    ),
-    routes: [
-    GoRoute(path: "/", builder: (context, state) => const MyHomePage(title: 'Flutter Demo Home Page')),
-    GoRoute(path: "/coachSelection", builder: (context, state) => const CoachScreen()),
-  ]);
-}
 
+  final GoRouter _router = GoRouter(
+    initialLocation: "/gettingstarted",
+    errorBuilder:
+        (context, state) =>
+            Scaffold(body: Center(child: Text("Error: ${state.error}"))),
+    routes: [
+      GoRoute(
+        path: "/",
+        builder:
+            (context, state) =>
+                const MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
+      GoRoute(
+        path: "/coachSelection",
+        builder: (context, state) => const CoachScreen(),
+      ),
+      GoRoute(
+        path: "/gettingstarted",
+        builder: (context, state) => const gettingstarted(),
+      ),
+    ],
+  );
+}
