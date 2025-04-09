@@ -3,7 +3,14 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:athlete_360/Widgets/glow_button.dart'; // Importing GlowButton
 
-class CoachScreen extends StatelessWidget {
+class CoachScreen extends StatefulWidget {
+  const CoachScreen({super.key});
+
+  @override
+  State<CoachScreen> createState() => _CoachScreenState();
+}
+
+class _CoachScreenState extends State<CoachScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

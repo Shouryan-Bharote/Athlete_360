@@ -26,52 +26,36 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color.fromRGBO(18, 18, 18, 1),
           extendBody: true,
           appBar: AppBar(
-            backgroundColor: Color.fromRGBO(42, 41, 41, 1),
-            title: Text(widget.title),
-          ),
+        backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+        elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  HugeIcons.strokeRoundedLocation05,
+                  color: Color.fromRGBO(255, 49, 49, 1),
+                  size: 25,
+                ),
+                SizedBox(width: 6),
+                Text(
+                  "Pune",
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+              ],
+            ),
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: NetworkImage(
+                'https://avatars.githubusercontent.com/u/57899051?v=4',
+              ),
+            ),
+          ],
+        ),
+      ),
           body: Column(
             children: [
-              // The location and Profile Image
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Icon(
-                          HugeIcons.strokeRoundedLocation05,
-                          size: 20,
-                          color: Color.fromRGBO(255, 49, 49, 1),
-                        ),
-                        Text(
-                          'Home',
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 49, 49, 1),
-                            fontSize: 20,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.notifications,
-                          size: 20,
-                          color: Color.fromRGBO(255, 49, 49, 1),
-                        ),
-                        SizedBox(width: 10),
-                        CircleAvatar(
-                          radius: 20,
-                          backgroundImage: NetworkImage(
-                            'https://avatars.githubusercontent.com/u/57899051?v=4',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
               // The Search Bar
               Container(
                 margin: EdgeInsets.all(10),
