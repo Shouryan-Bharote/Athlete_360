@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'Pages/coach_selection.dart';
 import 'Pages/base.dart';
 import 'Pages/gettingstarted.dart';
+import 'Pages/role_selection.dart';
+import 'Pages/LoginScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
   }
 
   final GoRouter _router = GoRouter(
-    initialLocation: "/gettingstarted",
+    initialLocation: "/LoginScreen",
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
@@ -61,6 +63,14 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: "/gettingstarted",
         builder: (context, state) => const gettingstarted(),
+      ),
+      GoRoute(
+        path: "/role_selection",
+        builder: (context, state) => const role_selection(),
+      ),
+      GoRoute(
+        path: "/LoginScreen",
+        builder: (context, state) => const LoginScreen(),
       ),
     ],
   );
