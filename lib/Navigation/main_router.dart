@@ -9,6 +9,7 @@ import 'package:athlete_360/Pages/HomeScreen.dart';
 import 'package:athlete_360/Pages/MessagesScreen.dart';
 import 'package:athlete_360/Pages/VenuesScreen.dart';
 import 'package:athlete_360/Pages/coach_selection.dart';
+import 'package:athlete_360/Pages/PlayerProfilePage.dart';
 
 class MainRouter {
   final GoRouter router = GoRouter(
@@ -26,27 +27,76 @@ class MainRouter {
       /// SHELL ROUTE - for base layout
       ShellRoute(
         builder: (context, state, child) {
-          return PlayerBase(
-            title: 'Flutter Demo Home Page',
-            child: child,
-          );
+          return PlayerBase(title: 'Player Base', child: child);
         },
         routes: [
           GoRoute(
             path: "/home",
-            builder: (context, state) => HomeScreen(), // this is the main body
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: HomeScreen(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
           ),
           GoRoute(
             path: "/events",
-            builder: (context, state) => EventsScreen(),
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: EventsScreen(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
           ),
           GoRoute(
             path: "/venues",
-            builder: (context, state) => VenuesScreen(),
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: VenuesScreen(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
           ),
           GoRoute(
             path: "/messages",
-            builder: (context, state) => MessagesScreen(),
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: MessagesScreen(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
           ),
           // GoRoute(
           //   path: "/center",
@@ -54,6 +104,24 @@ class MainRouter {
           // ),
         ],
       ),
+      GoRoute(
+        path: "/playerProfile",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: PlayerProfilePage(),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          );
+        },
+      ),
+      
       GoRoute(
         path: "/coachSelection",
         builder: (context, state) => const CoachScreen(),

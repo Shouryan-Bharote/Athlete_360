@@ -10,17 +10,14 @@ class PlayerBase extends StatefulWidget {
   final String title;
   final Widget child;
 
-  const PlayerBase(
-    {super.key,
-    required this.title,
-    required this.child});
+  const PlayerBase({super.key, required this.title, required this.child});
 
   @override
   State<PlayerBase> createState() => _PlayerBaseState();
 }
 
 class _PlayerBaseState extends State<PlayerBase> {
-  final navigationKey = GlobalKey<CurvedNavigationBarState>();
+  // final navigationKey = GlobalKey<CurvedNavigationBarState>();
 
   // int _selectedIndex = 0;
 
@@ -37,6 +34,13 @@ class _PlayerBaseState extends State<PlayerBase> {
   //   });
   // }
 
+  int _currentIndex = 0;
+
+  void _onTabSelected(int index, String route) {
+    setState(() => _currentIndex = index);
+    context.go(route);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,35 +50,45 @@ class _PlayerBaseState extends State<PlayerBase> {
           backgroundColor: Color.fromRGBO(18, 18, 18, 1),
           extendBody: true,
           appBar: AppBar(
-        backgroundColor: Color.fromRGBO(18, 18, 18, 1),
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+            backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+            elevation: 0,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  HugeIcons.strokeRoundedLocation05,
-                  color: Color.fromRGBO(255, 49, 49, 1),
-                  size: 25,
+                Row(
+                  children: [
+                    Icon(
+                      HugeIcons.strokeRoundedLocation05,
+                      color: Color.fromRGBO(255, 49, 49, 1),
+                      size: 25,
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      "Pune",
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 6),
-                Text(
-                  "Pune",
-                  style: TextStyle(color: Colors.white, fontSize: 25),
+                GestureDetector(
+                  onTap: () {
+                    // Handle avatar tap
+                    context.push('/playerProfile');
+                  },
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                      'https://avatars.githubusercontent.com/u/57899051?v=4',
+                    ),
+                  ),
                 ),
               ],
             ),
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(
-                'https://avatars.githubusercontent.com/u/57899051?v=4',
-              ),
-            ),
-          ],
-        ),
-      ),
-      body: widget.child,
+          ),
+          body: Container(
+            margin: EdgeInsets.all(15),
+            // padding: EdgeInsets.symmetric(horizontal: 16),
+            child: widget.child,
+          ),
 
           // bottomNavigationBar: CurvedNavigationBar(
           //   key: navigationKey,
@@ -103,12 +117,13 @@ class _PlayerBaseState extends State<PlayerBase> {
           //   },
           // ),
           bottomNavigationBar: CustomNavigationBar(
+            currentIndex: _currentIndex,
             activeIconColor: Color.fromRGBO(255, 49, 49, 1),
             inactiveIconColor: Color.fromRGBO(255, 255, 255, 1),
-            onHomePressed: () => context.go('/home'),
-            onEventsPressed: () => context.go('/events'), 
-            onVenuesPressed: () => context.go('/venues'),
-            onMessagesPressed: () => context.go('/messages'),
+            onHomePressed: () => _onTabSelected(0, '/home'),
+            onEventsPressed: () => _onTabSelected(1, '/events'),
+            onVenuesPressed: () => _onTabSelected(2, '/venues'),
+            onMessagesPressed: () => _onTabSelected(3, '/messages'),
             onCenterPressed: () {
               // TODO: Implement center button functionality
               print('Center button pressed');
