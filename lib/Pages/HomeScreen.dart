@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         // The Search Bar
         Container(
-          margin: EdgeInsets.all(10),
+          
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Color.fromRGBO(42, 41, 41, 1),
