@@ -14,13 +14,13 @@ import 'package:athlete_360/Pages/PlayerProfilePage.dart';
 class MainRouter {
   final GoRouter router = GoRouter(
     // use this while debugging for now
-    initialLocation: "/home",
+    initialLocation: "/playerProfile",
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
     routes: [
       GoRoute(
-        path: "/gettingstarted",
+        path: "/player",
         builder: (context, state) => const gettingStarted(),
       ),
       // base.dart navigation bar
