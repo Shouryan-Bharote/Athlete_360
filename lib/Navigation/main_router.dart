@@ -10,15 +10,20 @@ import 'package:athlete_360/Pages/MessagesScreen.dart';
 import 'package:athlete_360/Pages/VenuesScreen.dart';
 import 'package:athlete_360/Pages/coach_selection.dart';
 import 'package:athlete_360/Pages/PlayerProfilePage.dart';
+import 'package:athlete_360/Pages/LoginScreen.dart';
 
 class MainRouter {
   final GoRouter router = GoRouter(
     // use this while debugging for now
-    initialLocation: "/playerProfile",
+    initialLocation: "/LoginScreen",
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
     routes: [
+      GoRoute(
+        path: "/LoginScreen",
+        builder: (context, state) => const LoginScreen(),
+      ),
       GoRoute(
         path: "/player",
         builder: (context, state) => const gettingStarted(),
@@ -121,7 +126,7 @@ class MainRouter {
           );
         },
       ),
-      
+
       GoRoute(
         path: "/coachSelection",
         builder: (context, state) => const CoachScreen(),

@@ -13,6 +13,7 @@ class gettingStarted extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/getting_started/background.png'),
+
             fit: BoxFit.cover,
           ),
         ),
