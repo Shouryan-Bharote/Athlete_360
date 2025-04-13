@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
+import 'package:go_router/go_router.dart';
+// import 'package:hugeicons/hugeicons.dart';
 
 class PlayerProfilePage extends StatefulWidget {
   const PlayerProfilePage({super.key});
@@ -14,116 +15,116 @@ class _PlayerProfilePageState extends State<PlayerProfilePage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(18, 18, 18, 1),
       appBar: AppBar(
+        toolbarHeight: 45,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
+        leading: CircleAvatar(
+          radius: 20,
+          backgroundColor: Color.fromRGBO(255, 49, 49, 1),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => context.pop(),
+          ),
+        ),
+        title: Text(
+          'Player Profile',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Profile Header
-            Container(
-              padding: EdgeInsets.all(20),
-              child: Column(
+      body: Container(
+        margin: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Profile Card
+              Stack(
                 children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/57899051?v=4',
+                  // PlayerBanner
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(22),
+                      topRight: Radius.circular(22),
+                    ),
+                    child: Image.asset(
+                      'assets/PlayerProfile/dog-5040008.jpg',
+                      width: double.infinity,
+                      height: 200,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Player Name',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Pune, India',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
+                  // PlayerProfile and name
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: EdgeInsets.only(top: 105),
+                    child: Column(
+                      children: [
+                        // PlayerProfile Img
+                        Container(
+                          width: 140,
+                          height: 140,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.black, width: 4),
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                'https://avatars.githubusercontent.com/u/57899051?v=4',
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 10),
+                        // Player Name
+                        Text(
+                          'Player Name',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-            ),
-            
-            // Stats Section
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+              // Info Card
+              Stack(
                 children: [
-                  _buildStatItem('Matches', '24'),
-                  _buildStatItem('Wins', '18'),
-                  _buildStatItem('Losses', '6'),
-                ],
-              ),
-            ),
-            
-            // About Section
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'About',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Professional athlete with 5+ years of experience. Specialized in basketball and fitness training.',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            
-            // Skills Section
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Skills',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                  Column(
                     children: [
-                      _buildSkillChip('Basketball'),
-                      _buildSkillChip('Fitness'),
-                      _buildSkillChip('Coaching'),
-                      _buildSkillChip('Nutrition'),
+                      // Rating info
+                      Container(
+                        height: 105,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(74, 74, 74, 0.47),
+                          borderRadius: BorderRadius.circular(22),
+                        ),
+                      ),
+                      // Stats info
+                      Container(
+                        height: 203,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(top: 10),
+                        decoration: BoxDecoration(
+                          color: Color.fromRGBO(74, 74, 74, 0.47),
+                          borderRadius: BorderRadius.circular(22),
+                        ),
+                      ),
                     ],
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -140,23 +141,14 @@ class _PlayerProfilePageState extends State<PlayerProfilePage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Text(
-          label,
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 14,
-          ),
-        ),
+        Text(label, style: TextStyle(color: Colors.grey, fontSize: 14)),
       ],
     );
   }
 
   Widget _buildSkillChip(String skill) {
     return Chip(
-      label: Text(
-        skill,
-        style: TextStyle(color: Colors.white),
-      ),
+      label: Text(skill, style: TextStyle(color: Colors.white)),
       backgroundColor: Color.fromRGBO(255, 49, 49, 1),
     );
   }
