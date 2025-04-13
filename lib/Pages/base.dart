@@ -3,19 +3,43 @@ import 'package:athlete_360/Widgets/customNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
+class PlayerBase extends StatefulWidget {
   final String title;
+  final Widget child;
+
+  const PlayerBase({super.key, required this.title, required this.child});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PlayerBase> createState() => _PlayerBaseState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  final navigationKey = GlobalKey<CurvedNavigationBarState>();
+class _PlayerBaseState extends State<PlayerBase> {
+  // final navigationKey = GlobalKey<CurvedNavigationBarState>();
+
+  // int _selectedIndex = 0;
+
+  // final List<Widget> _screens = [
+  //   HomeScreen(),
+  //   EventsScreen(),
+  //   VenuesScreen(),
+  //   MessagesScreen(),
+  // ];
+
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     _selectedIndex = index;
+  //   });
+  // }
+
+  int _currentIndex = 0;
+
+  void _onTabSelected(int index, String route) {
+    setState(() => _currentIndex = index);
+    context.go(route);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,131 +50,46 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Color.fromRGBO(18, 18, 18, 1),
           extendBody: true,
           appBar: AppBar(
-        backgroundColor: Color.fromRGBO(18, 18, 18, 1),
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
+            backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+            elevation: 0,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  HugeIcons.strokeRoundedLocation05,
-                  color: Color.fromRGBO(255, 49, 49, 1),
-                  size: 25,
-                ),
-                SizedBox(width: 6),
-                Text(
-                  "Pune",
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-              ],
-            ),
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(
-                'https://avatars.githubusercontent.com/u/57899051?v=4',
-              ),
-            ),
-          ],
-        ),
-      ),
-          body: Column(
-            children: [
-              // The Search Bar
-              Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(42, 41, 41, 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
+                Row(
                   children: [
-                    Icon(Icons.search, color: Color.fromRGBO(255, 49, 49, 1)),
-                    SizedBox(width: 10),
+                    Icon(
+                      HugeIcons.strokeRoundedLocation05,
+                      color: Color.fromRGBO(255, 49, 49, 1),
+                      size: 25,
+                    ),
+                    SizedBox(width: 6),
                     Text(
-                      'Search',
-                      style: TextStyle(
-                        color: Color.fromRGBO(255, 49, 49, 1),
-                        fontSize: 20,
-                      ),
+                      "Pune",
+                      style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
                   ],
                 ),
-              ),
-              // Gradient Buttons
-              Column(
-                children: [
-                  // Book a Coach btn 
-                  GlowButton(
-                    headingText: "Book a Coach",
-                    buttonText: 'Find Your Best Coach to get trained', // Updated to use buttonText
-                    headingTextAlignment: Alignment.centerLeft, // Updated alignment
-                    headingTextPadding: EdgeInsets.only(left: 5), // Updated padding
-                    buttonTextAlignment: Alignment.centerLeft, // Updated alignment
-                    buttonTextPadding: EdgeInsets.only(left: 5), // Updated padding
-                    headingTextStyle: TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20, // Updated font size for heading
+                GestureDetector(
+                  onTap: () {
+                    // Handle avatar tap
+                    context.push('/playerProfile');
+                  },
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(
+                      'https://avatars.githubusercontent.com/u/57899051?v=4',
                     ),
-                    buttonTextStyle: TextStyle( // New style for button text
-                      color: Colors.black54,
-                      fontSize: 15,
-                    ),
-                    gradientColors: [Color.fromRGBO(218, 190, 104, 1), Color.fromRGBO(255, 255, 255, 1)],
-                    width: 500,
-                    height: 100,
-                    borderRadius: 30.0,
-                    onPressed: () {
-                      print("Book a Coach is Pressed");
-                    },
                   ),
-                  //Book a Venue btn
-                  GlowButton(
-                    headingText: "Book a Venue",
-                    buttonText: 'Find Your Best Coach to get trained', // Updated to use buttonText
-                    headingTextAlignment: Alignment.centerLeft, // Updated alignment
-                    headingTextPadding: EdgeInsets.only(left: 5), // Updated padding
-                    buttonTextAlignment: Alignment.centerLeft, // Updated alignment
-                    buttonTextPadding: EdgeInsets.only(left: 5), // Updated padding
-                    headingTextStyle: TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20, // Updated font size for heading
-                    ),
-                    buttonTextStyle: TextStyle( // New style for button text
-                      color: Colors.black54,
-                      fontSize: 15,
-                    ),
-                    gradientColors: [Color.fromRGBO(42, 183, 183, 1), Color.fromRGBO(255, 255, 255, 1)],
-                    width: 500,
-                    height: 100,
-                    borderRadius: 30.0,
-                    onPressed: () {
-                      print("Book a Coach is Pressed");
-                    },
-                  ),
-                ],
-              ),
-              // Athletic events section 
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Athletic Events',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
+          body: Container(
+            margin: EdgeInsets.all(15),
+            // padding: EdgeInsets.symmetric(horizontal: 16),
+            child: widget.child,
+          ),
+
           // bottomNavigationBar: CurvedNavigationBar(
           //   key: navigationKey,
           //   color: Color.fromRGBO(42, 41, 41, 1),
@@ -178,22 +117,16 @@ class _MyHomePageState extends State<MyHomePage> {
           //   },
           // ),
           bottomNavigationBar: CustomNavigationBar(
+            currentIndex: _currentIndex,
             activeIconColor: Color.fromRGBO(255, 49, 49, 1),
             inactiveIconColor: Color.fromRGBO(255, 255, 255, 1),
-            onHomePressed: () {
-              
-            },
-            onEventsPressed: () {
-              // Handle events button press
-            },
-            onVenuesPressed: () {
-              // Handle venues button press
-            },
-            onMessagesPressed: () {
-              // Handle messages button press
-            },
+            onHomePressed: () => _onTabSelected(0, '/home'),
+            onEventsPressed: () => _onTabSelected(1, '/events'),
+            onVenuesPressed: () => _onTabSelected(2, '/venues'),
+            onMessagesPressed: () => _onTabSelected(3, '/messages'),
             onCenterPressed: () {
-              // Handle center button press
+              // TODO: Implement center button functionality
+              print('Center button pressed');
             },
           ),
         ),

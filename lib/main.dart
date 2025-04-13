@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import 'Pages/coach_selection.dart';
-import 'Pages/base.dart';
-import 'Pages/gettingstarted.dart';
-import 'Pages/role_selection.dart';
-import 'Pages/LoginScreen.dart';
+import 'package:athlete_360/Navigation/main_router.dart';
 
 void main() {
   runApp(MyApp());
@@ -40,38 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      routerConfig: _router,
+      routerConfig: MainRouter().router,
     );
   }
-
-  final GoRouter _router = GoRouter(
-    initialLocation: "/LoginScreen",
-    errorBuilder:
-        (context, state) =>
-            Scaffold(body: Center(child: Text("Error: ${state.error}"))),
-    routes: [
-      GoRoute(
-        path: "/",
-        builder:
-            (context, state) =>
-                const MyHomePage(title: 'Flutter Demo Home Page'),
-      ),
-      GoRoute(
-        path: "/coachSelection",
-        builder: (context, state) => const CoachScreen(),
-      ),
-      GoRoute(
-        path: "/gettingstarted",
-        builder: (context, state) => const gettingstarted(),
-      ),
-      GoRoute(
-        path: "/role_selection",
-        builder: (context, state) => const role_selection(),
-      ),
-      GoRoute(
-        path: "/LoginScreen",
-        builder: (context, state) => const LoginScreen(),
-      ),
-    ],
-  );
 }

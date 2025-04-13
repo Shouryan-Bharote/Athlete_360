@@ -67,6 +67,7 @@ flutter:
     - assets/images/logo.png
     - assets/getting_started/background.png
     - assets/getting_started/logo.png
+    - assets/PlayerProfile/dog-5040008.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

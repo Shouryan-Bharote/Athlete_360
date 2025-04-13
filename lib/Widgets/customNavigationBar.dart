@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class CustomNavigationBar extends StatelessWidget {
+  final int currentIndex;
   final Function()? onHomePressed;
   final Function()? onEventsPressed;
   final Function()? onVenuesPressed;
@@ -12,8 +13,9 @@ class CustomNavigationBar extends StatelessWidget {
 
   const CustomNavigationBar({
     super.key,
-    this.activeIconColor,
-    this.inactiveIconColor,
+    required this.currentIndex,
+    required this.activeIconColor,
+    required this.inactiveIconColor,
     this.onHomePressed,
     this.onEventsPressed,
     this.onVenuesPressed,
@@ -39,7 +41,7 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: Icon(
                   HugeIcons.strokeRoundedHome02,
                   size: 30,
-                  color: activeIconColor,
+                  color: currentIndex == 0 ? activeIconColor : inactiveIconColor,
                 ),
                 onPressed: onHomePressed,
               ),
@@ -48,7 +50,7 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: Icon(
                   HugeIcons.strokeRoundedBrochure,
                   size: 30,
-                  color: inactiveIconColor,
+                  color: currentIndex == 1 ? activeIconColor : inactiveIconColor,
                 ),
                 onPressed: onEventsPressed,
               ),
@@ -57,7 +59,7 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: Icon(
                   HugeIcons.strokeRoundedBuilding03,
                   size: 30,
-                  color: inactiveIconColor,
+                  color: currentIndex == 2 ? activeIconColor : inactiveIconColor,
                 ),
                 onPressed: onVenuesPressed,
               ),
@@ -66,7 +68,7 @@ class CustomNavigationBar extends StatelessWidget {
                 icon: Icon(
                   HugeIcons.strokeRoundedMessage02,
                   size: 30,
-                  color: inactiveIconColor,
+                  color: currentIndex == 3 ? activeIconColor : inactiveIconColor,
                 ),
                 onPressed: onMessagesPressed,
               ),
@@ -80,13 +82,13 @@ class CustomNavigationBar extends StatelessWidget {
           height: 60,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: activeIconColor,
+            color: currentIndex == 4 ? activeIconColor : inactiveIconColor,
           ),
           child: IconButton(
             icon: Icon(
               HugeIcons.strokeRoundedRubiksCube,
               size: 30,
-              color: inactiveIconColor,
+              color: currentIndex == 4 ? activeIconColor:  Colors.black ,
             ),
             onPressed: onCenterPressed,
           ),

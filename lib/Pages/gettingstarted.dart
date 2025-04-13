@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class gettingstarted extends StatelessWidget {
-  const gettingstarted({super.key});
+class gettingStarted extends StatelessWidget {
+  const gettingStarted({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +63,7 @@ class gettingstarted extends StatelessWidget {
                             height: 110,
                           ),
                           const SizedBox(height: 35),
+                          // Getting started btn
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/signup');
