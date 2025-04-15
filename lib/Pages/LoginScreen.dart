@@ -92,23 +92,32 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Text("or", style: TextStyle(color: Colors.grey)),
                 const SizedBox(height: 20),
 
-                // Email
-                textField(
+                SizedBox(
+                  height: 55,
+                 child:textField(
                   hint: "Enter Your Email",
                   icon: Icons.email,
                   controller: emailController,
                 ),
+                ),
+                // Email
+                
                 const SizedBox(height: 20),
+                 
 
-                // Password
-                textField(
+                 SizedBox(
+                  height: 55,
+                    child:  textField(
                   hint: "Enter Your Password",
                   icon: Icons.lock,
                   controller: passwordController,
                   obscure: true,
                 ),
+                 ),
+                // Password
+                
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
 
                 // Forgot Password
                 Align(
@@ -121,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
 
                 // Login Button
                 ElevatedButton(
