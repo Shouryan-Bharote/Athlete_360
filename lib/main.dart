@@ -37,6 +37,4 @@ class MyApp extends StatelessWidget {
       routerConfig: MainRouter().router,
     );
   }
-
-  
 }
