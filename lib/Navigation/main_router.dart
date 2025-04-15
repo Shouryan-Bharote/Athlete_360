@@ -37,7 +37,7 @@ class MainRouter {
         builder: (context,state) => const RegisterScreen()
       ),
       GoRoute(
-        path: "/player",
+        path: "/gettingStarted",
         builder: (context, state) => const gettingStarted(),
       ),
       // base.dart navigation bar
