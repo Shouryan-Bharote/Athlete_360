@@ -20,7 +20,7 @@ class MainRouter {
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
     routes: [
       GoRoute(
-        path: "/player",
+        path: "/gettingStarted",
         builder: (context, state) => const gettingStarted(),
       ),
       // base.dart navigation bar
