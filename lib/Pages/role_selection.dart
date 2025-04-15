@@ -1,4 +1,7 @@
+import 'package:athlete_360/Pages/LoginScreen.dart';
+import 'package:athlete_360/Pages/RegisterScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class role_selection extends StatelessWidget {
   const role_selection({super.key});
@@ -60,7 +63,7 @@ class role_selection extends StatelessWidget {
                     label: "Continue as Player",
 
                     onPressed: () {
-                      Navigator.pushNamed(context, "/signup_player");
+                     context.push('/LoginScreen');
                     },
                   ),
                   const SizedBox(height: 20),

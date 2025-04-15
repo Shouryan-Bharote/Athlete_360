@@ -1,3 +1,5 @@
+import 'package:athlete_360/Pages/RegisterScreen.dart';
+import 'package:athlete_360/Pages/role_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,14 +17,24 @@ import 'package:athlete_360/Pages/LoginScreen.dart';
 class MainRouter {
   final GoRouter router = GoRouter(
     // use this while debugging for now
-    initialLocation: "/LoginScreen",
+    initialLocation: "/gettingStarted",
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
     routes: [
+      GoRoute(path: "/gettingStarted",
+      builder: (context, state) => const gettingStarted(),
+      ),
+      GoRoute(path: "/role_selection",
+      builder: (context, state) => const role_selection(),
+      ),
       GoRoute(
         path: "/LoginScreen",
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: "/RegisterScreen",
+        builder: (context,state) => const RegisterScreen()
       ),
       GoRoute(
         path: "/player",

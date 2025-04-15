@@ -1,16 +1,14 @@
-import 'package:athlete_360/Pages/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => RegisterScreen_RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -42,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Back Button
                 Align(
                   alignment: Alignment.topLeft,
-                  child:GestureDetector(
+                  child: GestureDetector(
                     onTap: () {
                          Navigator.pop(context);
                             },
@@ -51,6 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                      child: const Icon(Icons.arrow_back, color: Colors.white),
                           ),
                       )
+
                 ),
                 const SizedBox(height: 20),
 
@@ -61,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 10),
 
                 const Text(
-                  "Please Login To Your Account",
+                  "Register!! To get started",
                   style: TextStyle(color: Colors.grey),
                   textAlign: TextAlign.center,
                 ),
@@ -91,46 +90,58 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const Text("or", style: TextStyle(color: Colors.grey)),
                 const SizedBox(height: 20),
-
-                SizedBox(
-                  height: 55,
+              
+              SizedBox(
+                height: 55,
                  child:textField(
+                  hint: "Enter Your Name",
+                  icon: Icons.account_circle_outlined,
+                controller: TextEditingController()
+                ),
+              ),
+              //Name
+              
+                const SizedBox(height: 20),
+ 
+               SizedBox(
+                height: 55,
+                  child:textField(
                   hint: "Enter Your Email",
                   icon: Icons.email,
                   controller: emailController,
                 ),
-                ),
+               ),
                 // Email
                 
                 const SizedBox(height: 20),
-                 
 
-                 SizedBox(
+                SizedBox(
                   height: 55,
-                    child:  textField(
+                 child:textField(
+                  
                   hint: "Enter Your Password",
                   icon: Icons.lock,
                   controller: passwordController,
                   obscure: true,
                 ),
-                 ),
+                ),
                 // Password
                 
 
-                const SizedBox(height: 5),
+                const SizedBox(height: 20),
 
-                // Forgot Password
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Forget Password?",
-                      style: TextStyle(color: Colors.redAccent),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
+                // // Forgot Password
+                // Align(
+                //   alignment: Alignment.centerRight,
+                //   child: TextButton(
+                //     onPressed: () {},
+                //     child: const Text(
+                //       "Forget Password?",
+                //       style: TextStyle(color: Colors.redAccent),
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(height: 10),
 
                 // Login Button
                 ElevatedButton(
@@ -143,31 +154,29 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   child: const Text(
-                    "Login",
+                    "Register",
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
                 const SizedBox(height: 20),
 
                 // Register Link
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don’t Have Account? ",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        context.push('/RegisterScreen');
-                      },
-                      child: const Text(
-                        "Register",
-                        style: TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     const Text(
+                //       "Don’t Have Account? ",
+                //       style: TextStyle(color: Colors.white),
+                //     ),
+                //     GestureDetector(
+                //       onTap: () {},
+                //       child: const Text(
+                //         "Register",
+                //         style: TextStyle(color: Colors.red),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),
