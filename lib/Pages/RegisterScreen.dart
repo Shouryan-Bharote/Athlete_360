@@ -92,7 +92,7 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 20),
               
               SizedBox(
-                height: 55,
+                height: 58,
                  child:textField(
                   hint: "Enter Your Name",
                   icon: Icons.account_circle_outlined,
@@ -104,7 +104,7 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 20),
  
                SizedBox(
-                height: 55,
+                height: 58,
                   child:textField(
                   hint: "Enter Your Email",
                   icon: Icons.email,
@@ -116,7 +116,7 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                 const SizedBox(height: 20),
 
                 SizedBox(
-                  height: 55,
+                  height: 58,
                  child:textField(
                   
                   hint: "Enter Your Password",

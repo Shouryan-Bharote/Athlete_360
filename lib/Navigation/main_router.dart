@@ -1,3 +1,4 @@
+import 'package:athlete_360/Pages/CoachVenue.dart';
 import 'package:athlete_360/Pages/RegisterScreen.dart';
 import 'package:athlete_360/Pages/role_selection.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,14 @@ class MainRouter {
       GoRoute(
         path: "/player",
         builder: (context, state) => const gettingStarted(),
+      ),
+      GoRoute(
+        path: "/CoachVenue",
+        builder:(context, state) => const CoachVenue(),
+        ),
+      GoRoute(
+        path:  "/CoachScreen",
+        builder: (context, state) => const CoachScreen(),
       ),
       // base.dart navigation bar
       /// SHELL ROUTE - for base layout

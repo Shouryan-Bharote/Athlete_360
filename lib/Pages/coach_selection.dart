@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:athlete_360/Widgets/glow_button.dart'; // Importing GlowButton
@@ -13,6 +14,7 @@ class CoachScreen extends StatefulWidget {
 class _CoachScreenState extends State<CoachScreen> {
   @override
   Widget build(BuildContext context) {
+    var _currentIndex=2;
     return Scaffold(
       backgroundColor: Color.fromRGBO(18, 18, 18, 1), // Dark background
       extendBody: true,
@@ -202,28 +204,48 @@ class _CoachScreenState extends State<CoachScreen> {
 
       // ✅ NAVIGATION BAR
       bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromRGBO(42, 41, 41, 1),
-        backgroundColor: Colors.transparent,
-        animationDuration: Duration(milliseconds: 300),
-        items: const <Widget>[
-          Icon(
-            HugeIcons.strokeRoundedHome02,
-            size: 30,
+  index: _currentIndex,
+  color: const Color.fromRGBO(42, 41, 41, 1),
+  backgroundColor: Colors.transparent,
+  animationDuration: const Duration(milliseconds: 300),
+  items: <Widget>[
+    Icon(
+      HugeIcons.strokeRoundedHome02,
+      size: _currentIndex == 0 ? 35 : 28, // Bigger if selected
+      color: const Color.fromRGBO(255, 49, 49, 1),
+    ),
+    Icon(
+      HugeIcons.strokeRoundedIceCubes, // Assuming this is Trainmap
+      size: _currentIndex == 1 ? 40 : 30,
+      color: const Color.fromRGBO(255, 49, 49, 1),
+    ),
+    Icon(
+      HugeIcons.strokeRoundedCube,
+      size: _currentIndex == 2 ? 40 : 30,
+      color: const Color.fromRGBO(255, 49, 49, 1),
+    ),
+    Icon(
+            HugeIcons.strokeRoundedMessage01,
+            size: _currentIndex == 3 ? 40 : 30,
             color: Color.fromRGBO(255, 49, 49, 1),
           ),
+
           Icon(
-            HugeIcons.strokeRoundedTriangle,
-            size: 30,
+            HugeIcons.strokeRoundedPackage,
+            size: _currentIndex == 4 ? 40 : 30,
             color: Color.fromRGBO(255, 49, 49, 1),
           ),
-          Icon(
-            HugeIcons.strokeRoundedIceCubes,
-            size: 30,
-            color: Color.fromRGBO(255, 49, 49, 1),
-          ),
-        ],
-        onTap: (index) {},
-      ),
+  ],
+  onTap: (index) {
+    setState(() {
+      _currentIndex = index;
+      // You can also navigate to different pages here
+      if(_currentIndex == 0)  {
+       context.push('/CoachVenue');
+      }
+    });
+  },
+),
     );
   }
 
