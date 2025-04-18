@@ -16,50 +16,10 @@ class _CoachVenueState extends State<CoachVenue> {
   @override
   Widget build(BuildContext context) {
 
-    int _currentIndex = 2;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
       extendBody: true,
-      appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                const Icon(
-                  HugeIcons.strokeRoundedLocation05,
-                  color: Color.fromRGBO(255, 49, 49, 1),
-                  size: 25,
-                ),
-                const SizedBox(width: 6),
-                const Text(
-                  "Pune",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-              ],
-            ),
-            const Row(
-              children: [
-                Icon(
-                  HugeIcons.strokeRoundedNotification01,
-                  color: Colors.white,
-                  size: 26,
-                ),
-                SizedBox(width: 16),
-                CircleAvatar(
-                  radius: 20,
-                  backgroundImage: NetworkImage(
-                    'https://avatars.githubusercontent.com/u/57899051?v=4',
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-
+    
       // ✅ BODY
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -126,52 +86,6 @@ class _CoachVenueState extends State<CoachVenue> {
         ),
       ),
 
-      // ✅ BOTTOM NAVIGATION
-       // default selected index
- 
-bottomNavigationBar: CurvedNavigationBar(
-  index: _currentIndex,
-  color: const Color.fromRGBO(42, 41, 41, 1),
-  backgroundColor: Colors.transparent,
-  animationDuration: const Duration(milliseconds: 300),
-  items: <Widget>[
-    Icon(
-      HugeIcons.strokeRoundedHome02,
-      size: _currentIndex == 0 ? 40 : 30, // Bigger if selected
-      color: const Color.fromRGBO(255, 49, 49, 1),
-    ),
-    Icon(
-      HugeIcons.strokeRoundedIceCubes, // Assuming this is Trainmap
-      size: _currentIndex == 1 ? 40 : 30,
-      color: const Color.fromRGBO(255, 49, 49, 1),
-    ),
-    Icon(
-      HugeIcons.strokeRoundedCube,
-      size: _currentIndex == 2 ? 40 : 30,
-      color: const Color.fromRGBO(255, 49, 49, 1),
-    ),
-    Icon(
-            HugeIcons.strokeRoundedMessage01,
-            size: _currentIndex == 3 ? 40 : 30,
-            color: Color.fromRGBO(255, 49, 49, 1),
-          ),
-
-          Icon(
-            HugeIcons.strokeRoundedPackage,
-            size: _currentIndex == 4 ? 40 : 30,
-            color: Color.fromRGBO(255, 49, 49, 1),
-          ),
-  ],
-  onTap: (index) {
-    setState(() {
-      _currentIndex = index;
-      // You can also navigate to different pages here
-      // if(_currentIndex == 1)  {
-      //  context.push('/CoachVenue');
-      // }
-    });
-  },
-),
     );
   }
 
