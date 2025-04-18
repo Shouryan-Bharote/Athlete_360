@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     print("Email: $email");
     print("Password: $password");
+    context.push('/home');
   }
 
   @override

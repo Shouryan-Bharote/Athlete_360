@@ -122,7 +122,7 @@ class _PlayerBaseState extends State<PlayerBase> {
             inactiveIconColor: Color.fromRGBO(255, 255, 255, 1),
             onHomePressed: () => _onTabSelected(0, '/home'),
             onEventsPressed: () => _onTabSelected(1, '/events'),
-            onVenuesPressed: () => _onTabSelected(2, '/venues'),
+            onVenuesPressed: () => _onTabSelected(2, '/CoachVenue'),
             onMessagesPressed: () => _onTabSelected(3, '/messages'),
             onCenterPressed: () {
               // TODO: Implement center button functionality

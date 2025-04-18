@@ -10,7 +10,6 @@ import 'package:athlete_360/Pages/base.dart';
 import 'package:athlete_360/Pages/EventsScreen.dart';
 import 'package:athlete_360/Pages/HomeScreen.dart';
 import 'package:athlete_360/Pages/MessagesScreen.dart';
-import 'package:athlete_360/Pages/VenuesScreen.dart';
 import 'package:athlete_360/Pages/coach_selection.dart';
 import 'package:athlete_360/Pages/PlayerProfilePage.dart';
 import 'package:athlete_360/Pages/LoginScreen.dart';
@@ -41,10 +40,6 @@ class MainRouter {
         path: "/gettingStarted",
         builder: (context, state) => const gettingStarted(),
       ),
-      GoRoute(
-        path: "/CoachVenue",
-        builder:(context, state) => const CoachVenue(),
-        ),
       GoRoute(
         path:  "/CoachScreen",
         builder: (context, state) => const CoachScreen(),
@@ -91,11 +86,11 @@ class MainRouter {
             },
           ),
           GoRoute(
-            path: "/venues",
+            path: "/CoachVenue",
             pageBuilder: (context, state) {
               return CustomTransitionPage(
                 key: state.pageKey,
-                child: VenuesScreen(),
+                child: CoachVenue(),
                 transitionsBuilder: (
                   context,
                   animation,
@@ -107,6 +102,7 @@ class MainRouter {
               );
             },
           ),
+
           GoRoute(
             path: "/messages",
             pageBuilder: (context, state) {

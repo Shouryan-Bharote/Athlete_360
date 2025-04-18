@@ -70,7 +70,7 @@ class role_selection extends StatelessWidget {
                   RoleButton(
                     label: "Continue as Coach",
                     onPressed: () {
-                     context.push('/CoachVenue');
+                    //  context.push('/CoachVenue');
                     },
                   ),
                   const SizedBox(height: 16),
