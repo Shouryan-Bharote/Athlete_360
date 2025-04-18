@@ -10,6 +10,7 @@ class PlayerProfilePage extends StatefulWidget {
 }
 
 class _PlayerProfilePageState extends State<PlayerProfilePage> {
+  final List<String> sports = ['Football', 'Cricket', 'Tennis','Basketball','Swimming','Badminton','Hockey','Baseball','Golf','Rugby'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,8 +122,59 @@ class _PlayerProfilePageState extends State<PlayerProfilePage> {
                       ),
                     ],
                   ),
+                  // Who's Profile
+                  Container(
+                    margin: EdgeInsets.fromLTRB(125, 100, 50, 0),
+                    padding: EdgeInsets.fromLTRB(20, 5, 20, 5),
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    child: Text(
+                      'Myself',
+                      style: TextStyle(
+                        color: Color.fromRGBO(9, 9, 9, 1),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                 ],
               ),
+              // Sports Skills
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(top: 20,bottom: 10),
+                child: Text(
+                  'Sports',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children:
+                      sports.map((sport) => _buildSkillChip(sport)).toList(),
+                ),
+              ),
+              // Posts 
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(top: 20,bottom: 10),
+                child: Text(
+                  'Posts',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            
             ],
           ),
         ),
@@ -147,9 +199,17 @@ class _PlayerProfilePageState extends State<PlayerProfilePage> {
   }
 
   Widget _buildSkillChip(String skill) {
-    return Chip(
-      label: Text(skill, style: TextStyle(color: Colors.white)),
-      backgroundColor: Color.fromRGBO(255, 49, 49, 1),
+    return Padding(
+      padding: const EdgeInsets.only(right: 10),
+      child: Chip(
+        label: Text(skill, style: TextStyle(color: Colors.black87)),
+        backgroundColor: Color.fromRGBO(255, 49, 49, 1),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: BorderSide(color: Colors.black, width: 1),
+        ),
+      ),
     );
   }
 }
