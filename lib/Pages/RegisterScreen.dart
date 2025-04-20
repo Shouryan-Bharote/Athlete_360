@@ -14,17 +14,50 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
+  final TextEditingController ageController =
+      TextEditingController(); // Changed to ageController
+  final TextEditingController additionalInfoController =
+      TextEditingController();
+
+  String selectedSport = 'Cricket'; // Default sport
+
 
   void handleSignup() async {
+    final name = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
+    final location = locationController.text;
+    final age = ageController.text;
+    final additionalInfo = additionalInfoController.text;
+    final sport = selectedSport;
     // Call your authentication service here
     await AuthService().playerSignUp(email, password);
 
     await Future.delayed(const Duration(seconds: 2));
-    context.pop();
+    
+
+    
+    print("Name: $name");
     print("Email: $email");
     print("Password: $password");
+    print("Location: $location");
+    print("Age: $age");
+    print("Additional Info: $additionalInfo");
+    print("Sport: $sport");
+    
+    context.pop();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    locationController.dispose();
+    ageController.dispose();
+    additionalInfoController.dispose();
+    super.dispose();
   }
 
   @override
@@ -51,9 +84,10 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: CircleAvatar(
+
+                    child: const CircleAvatar(
                       backgroundColor: Colors.red,
-                      child: const Icon(Icons.arrow_back, color: Colors.white),
+                      child: Icon(Icons.arrow_back, color: Colors.white),
                     ),
                   ),
                 ),
@@ -72,32 +106,10 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 30),
 
-                // Social Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    socialButton(
-                      icon: FontAwesomeIcons.google,
-                      color: Colors.red,
-                    ),
-                    const SizedBox(width: 16),
-                    socialButton(
-                      icon: FontAwesomeIcons.facebook,
-                      color: Colors.blue,
-                    ),
-                    const SizedBox(width: 16),
-                    socialButton(
-                      icon: FontAwesomeIcons.apple,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-
                 const Text("or", style: TextStyle(color: Colors.grey)),
                 const SizedBox(height: 20),
 
-                //Name
+                // Name Field
                 SizedBox(
                   height: 58,
                   child: textField(
@@ -106,10 +118,9 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                     controller: nameController,
                   ),
                 ),
-
                 const SizedBox(height: 20),
 
-                // Email
+                // Email Field
                 SizedBox(
                   height: 58,
                   child: textField(
@@ -118,10 +129,9 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                     controller: emailController,
                   ),
                 ),
-
                 const SizedBox(height: 20),
 
-                // Password
+                // Password Field
                 SizedBox(
                   height: 58,
                   child: textField(
@@ -131,21 +141,92 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                     obscure: true,
                   ),
                 ),
+                const SizedBox(height: 20),
+
+                // Location Field
+                SizedBox(
+                  height: 58,
+                  child: textField(
+                    hint: "Enter Your Location",
+                    icon: Icons.location_on,
+                    controller: locationController,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Age Field (Text Field for Age Input)
+                SizedBox(
+                  height: 58,
+                  child: textField(
+                    hint: "Enter Your Age",
+                    icon: Icons.calendar_today,
+                    controller: ageController,
+                    obscure: false,
+                    keyboardType: TextInputType.number, // Ensure numeric input
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Additional Info Field (Multiline)
+                SizedBox(
+                  height: 120,
+                  child: textField(
+                    hint: "Additional Information",
+                    icon: Icons.info,
+                    controller: additionalInfoController,
+                    obscure: false,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Sport Dropdown
+                DropdownButtonFormField<String>(
+                  value: selectedSport,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.sports, color: Colors.redAccent),
+                    filled: true,
+                    fillColor: Colors.grey.shade900,
+                    hintText: "Select Your Sport",
+                    hintStyle: const TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide.none, // Remove the default border
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 18,
+                    ), // Adjust content padding
+                  ),
+                  dropdownColor:
+                      Colors
+                          .grey
+                          .shade900, // Set the dropdown background color to match theme
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ), // Text color of selected item
+                  items:
+                      ['Cricket', 'Football', 'Basketball', 'Tennis'].map((
+                        sport,
+                      ) {
+                        return DropdownMenuItem<String>(
+                          value: sport,
+                          child: Text(
+                            sport,
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ), // Color of dropdown items
+                          ),
+                        );
+                      }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedSport = value!;
+                    });
+                  },
+
+                ),
 
                 const SizedBox(height: 20),
 
-                // // Forgot Password
-                // Align(
-                //   alignment: Alignment.centerRight,
-                //   child: TextButton(
-                //     onPressed: () {},
-                //     child: const Text(
-                //       "Forget Password?",
-                //       style: TextStyle(color: Colors.redAccent),
-                //     ),
-                //   ),
-                // ),
-                // const SizedBox(height: 10),
 
                 // Register Button
                 ElevatedButton(
@@ -163,24 +244,6 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // Register Link
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     const Text(
-                //       "Don’t Have Account? ",
-                //       style: TextStyle(color: Colors.white),
-                //     ),
-                //     GestureDetector(
-                //       onTap: () {},
-                //       child: const Text(
-                //         "Register",
-                //         style: TextStyle(color: Colors.red),
-                //       ),
-                //     ),
-                //   ],
-                // ),
               ],
             ),
           ),
@@ -189,13 +252,6 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    nameController.dispose();
-    super.dispose();
-  }
 
   Widget socialButton({required IconData icon, required Color color}) {
     return CircleAvatar(
@@ -205,11 +261,14 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+
   Widget textField({
     required String hint,
     required IconData icon,
     required TextEditingController controller,
     bool obscure = false,
+    TextInputType keyboardType =
+        TextInputType.text, // Added to specify numeric input
   }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -220,6 +279,7 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
       child: TextField(
         controller: controller,
         obscureText: obscure,
+        keyboardType: keyboardType, // Specify the keyboard type
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: Colors.redAccent),
