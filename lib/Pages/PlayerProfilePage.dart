@@ -174,7 +174,20 @@ class _PlayerProfilePageState extends State<PlayerProfilePage> {
                   ),
                 ),
               ),
-            
+            // Statistics Card
+            Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(top: 20,bottom: 10),
+                child: Text(
+                  'Statistics',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              // Statistics Graph
             ],
           ),
         ),
