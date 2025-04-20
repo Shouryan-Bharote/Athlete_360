@@ -18,16 +18,18 @@ class MainRouter {
   final GoRouter router = GoRouter(
     // use this while debugging for now
     // initialLocation: "/gettingStarted",
-    initialLocation: "/playerProfile",
+    initialLocation: "/RegisterScreen",
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
     routes: [
-      GoRoute(path: "/gettingStarted",
-      builder: (context, state) => const gettingStarted(),
+      GoRoute(
+        path: "/gettingStarted",
+        builder: (context, state) => const gettingStarted(),
       ),
-      GoRoute(path: "/role_selection",
-      builder: (context, state) => const role_selection(),
+      GoRoute(
+        path: "/role_selection",
+        builder: (context, state) => const role_selection(),
       ),
       GoRoute(
         path: "/LoginScreen",
@@ -35,14 +37,14 @@ class MainRouter {
       ),
       GoRoute(
         path: "/RegisterScreen",
-        builder: (context,state) => const RegisterScreen()
+        builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
         path: "/gettingStarted",
         builder: (context, state) => const gettingStarted(),
       ),
       GoRoute(
-        path:  "/CoachScreen",
+        path: "/CoachScreen",
         builder: (context, state) => const CoachScreen(),
       ),
       // base.dart navigation bar
