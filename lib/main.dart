@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:athlete_360/Navigation/main_router.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'Firebase/firebase_options.dart';
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
+  // Run the app
   runApp(MyApp());
 }
 

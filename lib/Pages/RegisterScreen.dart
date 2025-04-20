@@ -1,5 +1,7 @@
+import 'package:athlete_360/Firebase/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -20,7 +22,8 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
 
   String selectedSport = 'Cricket'; // Default sport
 
-  void handleLogin() {
+
+  void handleSignup() async {
     final name = nameController.text;
     final email = emailController.text;
     final password = passwordController.text;
@@ -28,7 +31,13 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
     final age = ageController.text;
     final additionalInfo = additionalInfoController.text;
     final sport = selectedSport;
+    // Call your authentication service here
+    await AuthService().playerSignUp(email, password);
 
+    await Future.delayed(const Duration(seconds: 2));
+    
+
+    
     print("Name: $name");
     print("Email: $email");
     print("Password: $password");
@@ -36,6 +45,8 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
     print("Age: $age");
     print("Additional Info: $additionalInfo");
     print("Sport: $sport");
+    
+    context.pop();
   }
 
   @override
@@ -73,6 +84,7 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                     onTap: () {
                       Navigator.pop(context);
                     },
+
                     child: const CircleAvatar(
                       backgroundColor: Colors.red,
                       child: Icon(Icons.arrow_back, color: Colors.white),
@@ -210,13 +222,15 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                       selectedSport = value!;
                     });
                   },
+
                 ),
 
                 const SizedBox(height: 20),
 
+
                 // Register Button
                 ElevatedButton(
-                  onPressed: handleLogin,
+                  onPressed: handleSignup,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     minimumSize: const Size(double.infinity, 50),
@@ -237,6 +251,16 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
+
+
+  Widget socialButton({required IconData icon, required Color color}) {
+    return CircleAvatar(
+      radius: 25,
+      backgroundColor: Colors.grey.shade900,
+      child: FaIcon(icon, color: color),
+    );
+  }
+
 
   Widget textField({
     required String hint,

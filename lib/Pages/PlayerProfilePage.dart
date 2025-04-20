@@ -1,3 +1,4 @@
+import 'package:athlete_360/Firebase/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:hugeicons/hugeicons.dart';
@@ -15,6 +16,14 @@ class _PlayerProfilePageState extends State<PlayerProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(18, 18, 18, 1),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromRGBO(255, 49, 49, 1),
+        child: Icon(Icons.add),
+        onPressed: () async{
+          AuthService().playerSignOut();
+          context.go('/role_selection');
+        },
+      ),
       appBar: AppBar(
         toolbarHeight: 45,
         backgroundColor: Colors.transparent,
