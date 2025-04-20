@@ -1,3 +1,4 @@
+import 'package:athlete_360/Firebase/auth_service.dart';
 import 'package:athlete_360/Pages/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,13 +15,15 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void handleLogin() {
+  void handleLogin() async{
     final email = emailController.text;
     final password = passwordController.text;
 
+    await AuthService().playerSignIn(email, password);
+
     print("Email: $email");
     print("Password: $password");
-    context.push('/home');
+    context.go('/home');
   }
 
   @override
@@ -93,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const Text("or", style: TextStyle(color: Colors.grey)),
                 const SizedBox(height: 20),
 
+                // Email
                 SizedBox(
                   height: 55,
                  child:textField(
@@ -101,11 +105,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: emailController,
                 ),
                 ),
-                // Email
                 
                 const SizedBox(height: 20),
                  
 
+                // Password
                  SizedBox(
                   height: 55,
                     child:  textField(
@@ -115,7 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscure: true,
                 ),
                  ),
-                // Password
                 
 
                 const SizedBox(height: 5),

@@ -1,5 +1,7 @@
+import 'package:athlete_360/Firebase/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -9,13 +11,18 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  void handleLogin() {
+  void handleSignup() async {
     final email = emailController.text;
     final password = passwordController.text;
+    // Call your authentication service here
+    await AuthService().playerSignUp(email, password);
 
+    await Future.delayed(const Duration(seconds: 2));
+    context.pop();
     print("Email: $email");
     print("Password: $password");
   }
@@ -42,14 +49,13 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                   alignment: Alignment.topLeft,
                   child: GestureDetector(
                     onTap: () {
-                         Navigator.pop(context);
-                            },
-                     child: CircleAvatar(
-                     backgroundColor: Colors.red,
-                     child: const Icon(Icons.arrow_back, color: Colors.white),
-                          ),
-                      )
-
+                      Navigator.pop(context);
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.red,
+                      child: const Icon(Icons.arrow_back, color: Colors.white),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20),
 
@@ -90,43 +96,41 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
 
                 const Text("or", style: TextStyle(color: Colors.grey)),
                 const SizedBox(height: 20),
-              
-              SizedBox(
-                height: 58,
-                 child:textField(
-                  hint: "Enter Your Name",
-                  icon: Icons.account_circle_outlined,
-                controller: TextEditingController()
-                ),
-              ),
-              //Name
-              
-                const SizedBox(height: 20),
- 
-               SizedBox(
-                height: 58,
-                  child:textField(
-                  hint: "Enter Your Email",
-                  icon: Icons.email,
-                  controller: emailController,
-                ),
-               ),
-                // Email
-                
-                const SizedBox(height: 20),
 
+                //Name
                 SizedBox(
                   height: 58,
-                 child:textField(
-                  
-                  hint: "Enter Your Password",
-                  icon: Icons.lock,
-                  controller: passwordController,
-                  obscure: true,
+                  child: textField(
+                    hint: "Enter Your Name",
+                    icon: Icons.account_circle_outlined,
+                    controller: nameController,
+                  ),
                 ),
+
+                const SizedBox(height: 20),
+
+                // Email
+                SizedBox(
+                  height: 58,
+                  child: textField(
+                    hint: "Enter Your Email",
+                    icon: Icons.email,
+                    controller: emailController,
+                  ),
                 ),
+
+                const SizedBox(height: 20),
+
                 // Password
-                
+                SizedBox(
+                  height: 58,
+                  child: textField(
+                    hint: "Enter Your Password",
+                    icon: Icons.lock,
+                    controller: passwordController,
+                    obscure: true,
+                  ),
+                ),
 
                 const SizedBox(height: 20),
 
@@ -143,9 +147,9 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
                 // ),
                 // const SizedBox(height: 10),
 
-                // Login Button
+                // Register Button
                 ElevatedButton(
-                  onPressed: handleLogin,
+                  onPressed: handleSignup,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     minimumSize: const Size(double.infinity, 50),
@@ -183,6 +187,14 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    super.dispose();
   }
 
   Widget socialButton({required IconData icon, required Color color}) {

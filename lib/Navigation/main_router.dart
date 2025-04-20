@@ -17,8 +17,8 @@ import 'package:athlete_360/Pages/LoginScreen.dart';
 class MainRouter {
   final GoRouter router = GoRouter(
     // use this while debugging for now
-    // initialLocation: "/gettingStarted",
-    initialLocation: "/playerProfile",
+    initialLocation: "/gettingStarted",
+    // initialLocation: "/playerProfile",
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
