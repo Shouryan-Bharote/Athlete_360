@@ -22,7 +22,7 @@ class _CoachVenueState extends State<CoachVenue> {
     
       // ✅ BODY
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        // padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,7 +52,7 @@ class _CoachVenueState extends State<CoachVenue> {
             // 🎯 Book Coach & Venue Cards with navigation
             GestureDetector(
               onTap: () {
-                context.push('/CoachScreen');
+                context.push('/CoachSelectionScreen');
               },
               child: buildFeatureCard('assets/CoachVenue/book_Coach.png', ''),
             ),

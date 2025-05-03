@@ -37,14 +37,7 @@ class MainRouter {
         path: "/RegisterScreen",
         builder: (context,state) => const RegisterScreen()
       ),
-      GoRoute(
-        path: "/gettingStarted",
-        builder: (context, state) => const gettingStarted(),
-      ),
-      GoRoute(
-        path:  "/CoachScreen",
-        builder: (context, state) => const CoachScreen(),
-      ),
+      
       // base.dart navigation bar
       /// SHELL ROUTE - for base layout
       ShellRoute(
@@ -103,7 +96,23 @@ class MainRouter {
               );
             },
           ),
-
+          GoRoute(
+            path: "/CoachSelectionScreen",
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: CoachScreen(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
           GoRoute(
             path: "/messages",
             pageBuilder: (context, state) {
