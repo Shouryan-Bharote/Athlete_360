@@ -13,14 +13,36 @@ import 'package:athlete_360/Pages/MessagesScreen.dart';
 import 'package:athlete_360/Pages/coach_selection.dart';
 import 'package:athlete_360/Pages/PlayerProfilePage.dart';
 import 'package:athlete_360/Pages/LoginScreen.dart';
+
+// Firebase
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:athlete_360/Pages/Aicoach.dart';
 
 class MainRouter {
-  final GoRouter router = GoRouter(
-    // use this while debugging for now
-    initialLocation: "/Aicoach",
+  final ValueNotifier<User?> authState = ValueNotifier(
+    FirebaseAuth.instance.currentUser,
+  );
 
-    // initialLocation: "/playerProfile",
+  MainRouter() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      authState.value = user;
+    });
+  }
+
+  late final GoRouter router = GoRouter(
+    refreshListenable: authState,
+    initialLocation: "/gettingStarted",
+
+    redirect: (context, state) {
+      final loggedIn = authState.value != null;
+      final loggingIn = state == '/LoginScreen' || state == '/RegisterScreen';
+
+      if (!loggedIn && !loggingIn) return '/LoginScreen';
+      if (loggedIn && loggingIn) return '/home';
+      return null;
+    },
+
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),
@@ -50,6 +72,7 @@ class MainRouter {
         path: "/CoachScreen",
         builder: (context, state) => const CoachScreen(),
       ),
+
       // base.dart navigation bar
       /// SHELL ROUTE - for base layout
       ShellRoute(
@@ -57,6 +80,23 @@ class MainRouter {
           return PlayerBase(title: 'Player Base', child: child);
         },
         routes: [
+          GoRoute(
+            path: "/Aicoach",
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: Aicoach(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
           GoRoute(
             path: "/home",
             pageBuilder: (context, state) {
@@ -108,7 +148,23 @@ class MainRouter {
               );
             },
           ),
-
+          GoRoute(
+            path: "/CoachSelectionScreen",
+            pageBuilder: (context, state) {
+              return CustomTransitionPage(
+                key: state.pageKey,
+                child: CoachScreen(),
+                transitionsBuilder: (
+                  context,
+                  animation,
+                  secondaryAnimation,
+                  child,
+                ) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+              );
+            },
+          ),
           GoRoute(
             path: "/messages",
             pageBuilder: (context, state) {
