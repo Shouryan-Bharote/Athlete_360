@@ -21,6 +21,7 @@ These challenges hinder the growth of talented athletes and make it harder for t
 
 ## 🎯 Objective
 **Revolutionizing Athlete Management in the Indian Sporting Industry**:
+---
 As part of the **Google Solution Challenge 2025**, Athlete 360 addresses **UN SDG 12: Responsible Consumption and Production** by promoting smart, sustainable resource use in athlete development.
 
 We aim to deliver an **innovative, scalable, and user-friendly solution** that:
