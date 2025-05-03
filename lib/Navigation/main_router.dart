@@ -42,10 +42,6 @@ class MainRouter {
         builder: (context, state) => const RegisterScreen(),
       ),
       GoRoute(
-        path: "/gettingStarted",
-        builder: (context, state) => const gettingStarted(),
-      ),
-      GoRoute(
         path: "/CoachScreen",
         builder: (context, state) => const CoachScreen(),
       ),
