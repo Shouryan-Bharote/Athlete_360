@@ -32,11 +32,17 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
     final additionalInfo = additionalInfoController.text;
     final sport = selectedSport;
     // Call your authentication service here
-    await AuthService().playerSignUp(email, password);
+    int signupResult= await AuthService().playerSignUp(email, password);
 
+    if (signupResult == 1) {
+      // Sign up successful, navigate to the next screen
     await Future.delayed(const Duration(seconds: 2));
-    
-
+      if (!mounted) return;
+      context.pop();
+    } else {
+      // Sign up failed, show an error message or handle accordingly
+      print("Sign up failed");
+    } 
     
     print("Name: $name");
     print("Email: $email");
@@ -45,8 +51,6 @@ class RegisterScreen_RegisterScreenState extends State<RegisterScreen> {
     print("Age: $age");
     print("Additional Info: $additionalInfo");
     print("Sport: $sport");
-    
-    context.pop();
   }
 
   @override

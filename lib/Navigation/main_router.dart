@@ -14,12 +14,31 @@ import 'package:athlete_360/Pages/coach_selection.dart';
 import 'package:athlete_360/Pages/PlayerProfilePage.dart';
 import 'package:athlete_360/Pages/LoginScreen.dart';
 
-class MainRouter {
-  final GoRouter router = GoRouter(
-    // use this while debugging for now
+// Firebase 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
+class MainRouter {
+  final ValueNotifier<User?> authState = ValueNotifier(FirebaseAuth.instance.currentUser);
+
+  MainRouter() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      authState.value = user;
+    });
+  }
+
+  late final GoRouter router = GoRouter(
+    refreshListenable: authState,
     initialLocation: "/gettingStarted",
-    // initialLocation: "/playerProfile",
+
+    redirect: (context, state) {
+      final loggedIn = authState.value != null;
+      final loggingIn = state == '/LoginScreen' || state == '/RegisterScreen';
+
+      if (!loggedIn && !loggingIn) return '/LoginScreen';
+      if (loggedIn && loggingIn) return '/home';
+      return null;
+    },
 
     errorBuilder:
         (context, state) =>
