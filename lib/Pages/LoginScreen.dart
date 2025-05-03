@@ -19,11 +19,21 @@ class _LoginScreenState extends State<LoginScreen> {
     final email = emailController.text;
     final password = passwordController.text;
 
-    await AuthService().playerSignIn(email, password);
+    int result =await AuthService().playerSignIn(email, password);
 
+    if (result == 0) {
+      // Handle login failure (e.g., show a message to the user)
+      return;
+    } else if (result == 1) {
+      // Handle login success (e.g., navigate to the home screen)
+      await Future.delayed(const Duration(seconds: 2));
+      if (!mounted) return;
+      context.go('/home');
+    } else {
+      // Handle other cases if needed
+    }
     print("Email: $email");
     print("Password: $password");
-    context.go('/home');
   }
 
   @override

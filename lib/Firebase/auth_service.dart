@@ -4,13 +4,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class AuthService {
   // SignUp method for Player
-  Future<void> playerSignUp(String email, String password) async {
+  Future<int> playerSignUp(String email, String password) async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-
+      return 1; // Sign up successful
     } on FirebaseAuthException catch (e) {
       String message='';
       if (e.code == 'weak-password') {
@@ -32,16 +32,18 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+      return 0; // Sign up failed
     }
   }
 
   // SignIn method for Player
-  Future<void> playerSignIn(String email, String password) async {
+  Future<int> playerSignIn(String email, String password) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+      return 1; // Sign in successful
 
     } on FirebaseAuthException catch (e) {
       String message='';
@@ -65,15 +67,17 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+      return 0; // Sign in failed
     }
   }
 
   // SignOut method for Player
-  Future<void> playerSignOut() async {
+  Future<int> playerSignOut() async {
     try {
       await FirebaseAuth.instance.signOut();
       await Future.delayed(const Duration(seconds: 1));
 
+      return 1; // Sign out successful
     } catch (e) {
       Fluttertoast.showToast(
         msg: 'Error signing out. Please try again.',
@@ -84,6 +88,7 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 16.0,
       );
+      return 0; // Sign out failed
     }
   }
 }
