@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:athlete_360/Widgets/glow_button.dart'; // Importing GlowButton
@@ -13,41 +14,12 @@ class CoachScreen extends StatefulWidget {
 class _CoachScreenState extends State<CoachScreen> {
   @override
   Widget build(BuildContext context) {
+    var _currentIndex=2;
     return Scaffold(
       backgroundColor: Color.fromRGBO(18, 18, 18, 1), // Dark background
       extendBody: true,
 
-      // ✅ APP BAR
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(18, 18, 18, 1),
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  HugeIcons.strokeRoundedLocation05,
-                  color: Color.fromRGBO(255, 49, 49, 1),
-                  size: 25,
-                ),
-                SizedBox(width: 6),
-                Text(
-                  "Pune",
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-              ],
-            ),
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(
-                'https://avatars.githubusercontent.com/u/57899051?v=4',
-              ),
-            ),
-          ],
-        ),
-      ),
-
+      
       // ✅ BODY
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -200,30 +172,7 @@ class _CoachScreenState extends State<CoachScreen> {
         ),
       ),
 
-      // ✅ NAVIGATION BAR
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color.fromRGBO(42, 41, 41, 1),
-        backgroundColor: Colors.transparent,
-        animationDuration: Duration(milliseconds: 300),
-        items: const <Widget>[
-          Icon(
-            HugeIcons.strokeRoundedHome02,
-            size: 30,
-            color: Color.fromRGBO(255, 49, 49, 1),
-          ),
-          Icon(
-            HugeIcons.strokeRoundedTriangle,
-            size: 30,
-            color: Color.fromRGBO(255, 49, 49, 1),
-          ),
-          Icon(
-            HugeIcons.strokeRoundedIceCubes,
-            size: 30,
-            color: Color.fromRGBO(255, 49, 49, 1),
-          ),
-        ],
-        onTap: (index) {},
-      ),
+      
     );
   }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "673455496533",
+    "project_id": "trackit-360",
+    "storage_bucket": "trackit-360.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673455496533:android:c7bbe346e80d3abc1ca3dc",
+        "android_client_info": {
+          "package_name": "com.example.athlete_360"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT6_3iJTwTKnwMl4jRm4phyOspDCjRfsc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

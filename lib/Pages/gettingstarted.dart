@@ -1,5 +1,8 @@
 import 'dart:ui';
+import 'package:athlete_360/Pages/LoginScreen.dart';
+import 'package:athlete_360/Pages/role_selection.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class gettingStarted extends StatelessWidget {
   const gettingStarted({super.key});
@@ -13,6 +16,7 @@ class gettingStarted extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/getting_started/background.png'),
+
             fit: BoxFit.cover,
           ),
         ),
@@ -66,7 +70,8 @@ class gettingStarted extends StatelessWidget {
                           // Getting started btn
                           ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/signup');
+                             context.push('/role_selection');
+
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red,
