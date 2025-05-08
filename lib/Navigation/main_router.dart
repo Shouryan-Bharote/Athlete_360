@@ -12,6 +12,8 @@ import 'package:athlete_360/Pages/HomeScreen.dart';
 import 'package:athlete_360/Pages/MessagesScreen.dart';
 import 'package:athlete_360/Pages/coach_selection.dart';
 import 'package:athlete_360/Pages/PlayerProfilePage.dart';
+import 'package:athlete_360/Pages/chat_room_screen.dart';
+
 import 'package:athlete_360/Pages/LoginScreen.dart';
 
 // Firebase
@@ -67,6 +69,19 @@ class MainRouter {
         path: "/gettingStarted",
         builder: (context, state) => const gettingStarted(),
       ),
+
+
+      // ✅ This route does NOT include bottom nav or app bar
+      GoRoute(
+        path: "/chatRoom",
+        builder: (context, state) {
+          final userName = state.extra as String;
+          return ChatRoomScreen(userName: userName);
+        },
+      ),
+
+      // ✅ This wraps below routes in PlayerBase with navbar & app bar
+
       GoRoute(path: "/Aicoach", builder: (context, state) => Aicoach()),
       GoRoute(
         path: "/CoachScreen",
@@ -103,12 +118,7 @@ class MainRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: HomeScreen(),
-                transitionsBuilder: (
-                  context,
-                  animation,
-                  secondaryAnimation,
-                  child,
-                ) {
+                transitionsBuilder: (context, animation, _, child) {
                   return FadeTransition(opacity: animation, child: child);
                 },
               );
@@ -120,12 +130,7 @@ class MainRouter {
               return CustomTransitionPage(
                 key: state.pageKey,
                 child: EventsScreen(),
-                transitionsBuilder: (
-                  context,
-                  animation,
-                  secondaryAnimation,
-                  child,
-                ) {
+                transitionsBuilder: (context, animation, _, child) {
                   return FadeTransition(opacity: animation, child: child);
                 },
               );
@@ -136,6 +141,8 @@ class MainRouter {
             pageBuilder: (context, state) {
               return CustomTransitionPage(
                 key: state.pageKey,
+
+
                 child: CoachVenue(),
                 transitionsBuilder: (
                   context,
@@ -160,46 +167,34 @@ class MainRouter {
                   secondaryAnimation,
                   child,
                 ) {
+
                   return FadeTransition(opacity: animation, child: child);
                 },
               );
             },
           ),
-          GoRoute(
-            path: "/messages",
-            pageBuilder: (context, state) {
-              return CustomTransitionPage(
-                key: state.pageKey,
-                child: MessagesScreen(),
-                transitionsBuilder: (
-                  context,
-                  animation,
-                  secondaryAnimation,
-                  child,
-                ) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-              );
-            },
-          ),
-          // GoRoute(
-          //   path: "/center",
-          //   builder: (context, state) => CenterScreen(),
-          // ),
         ],
       ),
+
       GoRoute(
         path: "/playerProfile",
         pageBuilder: (context, state) {
           return CustomTransitionPage(
             key: state.pageKey,
             child: PlayerProfilePage(),
-            transitionsBuilder: (
-              context,
-              animation,
-              secondaryAnimation,
-              child,
-            ) {
+            transitionsBuilder: (context, animation, _, child) {
+              return FadeTransition(opacity: animation, child: child);
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: "/messages",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: MessagesScreen(),
+            transitionsBuilder: (context, animation, _, child) {
               return FadeTransition(opacity: animation, child: child);
             },
           );
