@@ -1,10 +1,10 @@
-import 'package:athlete_360/Pages/CoachVenue.dart';
-import 'package:athlete_360/Pages/RegisterScreen.dart';
-import 'package:athlete_360/Pages/role_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // Pages
+import 'package:athlete_360/Pages/CoachVenue.dart';
+import 'package:athlete_360/Pages/RegisterScreen.dart';
+import 'package:athlete_360/Pages/role_selection.dart';
 import 'package:athlete_360/Pages/gettingstarted.dart';
 import 'package:athlete_360/Pages/base.dart';
 import 'package:athlete_360/Pages/EventsScreen.dart';
@@ -13,11 +13,11 @@ import 'package:athlete_360/Pages/MessagesScreen.dart';
 import 'package:athlete_360/Pages/coach_selection.dart';
 import 'package:athlete_360/Pages/PlayerProfilePage.dart';
 import 'package:athlete_360/Pages/LoginScreen.dart';
+import 'package:athlete_360/Pages/Aicoach.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:athlete_360/Pages/Aicoach.dart';
 
 class MainRouter {
   final ValueNotifier<User?> authState = ValueNotifier(
