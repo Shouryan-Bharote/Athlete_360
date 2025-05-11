@@ -34,17 +34,16 @@ class MainRouter {
 
   late final GoRouter router = GoRouter(
     refreshListenable: authState,
-    initialLocation: "/gettingStarted",
+    initialLocation: "/Aicoach",
 
-    redirect: (context, state) {
+    /* redirect: (context, state) {
       final loggedIn = authState.value != null;
       final loggingIn = state == '/LoginScreen' || state == '/RegisterScreen';
 
       if (!loggedIn && !loggingIn) return '/LoginScreen';
       if (loggedIn && loggingIn) return '/home';
       return null;
-    },
-
+    },*/
     errorBuilder:
         (context, state) =>
             Scaffold(body: Center(child: Text("Error: ${state.error}"))),

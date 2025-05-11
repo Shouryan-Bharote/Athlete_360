@@ -16,8 +16,8 @@ class _AicoachState extends State<Aicoach> {
   double fileSizeMB = 0;
   bool isProcessing = false;
   String analysisResult = '';
+  bool hasResult = false;
 
-  // Pick video from gallery
   Future<void> pickVideoFromGallery() async {
     final pickedFile = await ImagePicker().pickVideo(
       source: ImageSource.gallery,
@@ -26,11 +26,12 @@ class _AicoachState extends State<Aicoach> {
       final file = File(pickedFile.path);
       final size = await file.length();
       if (size <= 500 * 1024 * 1024) {
-        // Check size under 500MB
         setState(() {
           _videoFile = file;
-          fileSizeMB = size / (1024 * 1024); // Convert to MB
-          isProcessing = false; // Reset processing flag
+          fileSizeMB = size / (1024 * 1024);
+          isProcessing = false;
+          hasResult = false;
+          analysisResult = '';
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -40,34 +41,28 @@ class _AicoachState extends State<Aicoach> {
     }
   }
 
-  // Start analysis
   Future<void> startAnalysis() async {
     if (_videoFile != null) {
       setState(() {
         isProcessing = true;
-        analysisResult = ''; // Clear previous result
+        hasResult = false;
+        analysisResult = '';
       });
 
       String result = await sendVideoForAnalysis(_videoFile!);
 
       setState(() {
-        analysisResult = result;
+        analysisResult = result.replaceAll('*', '');
         isProcessing = false;
+        hasResult = true;
       });
-
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(analysisResult)));
     }
   }
 
   Future<String> sendVideoForAnalysis(File videoFile) async {
-    // Ensure there's no extra space at the beginning or the end of the URL
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse(
-        'http://192.168.7.14:5000/analyze_video',
-      ), // Correct URL without extra space
+      Uri.parse('http://192.168.7.14:5000/analyze_video'),
     );
     request.files.add(
       await http.MultipartFile.fromPath('video', videoFile.path),
@@ -78,12 +73,12 @@ class _AicoachState extends State<Aicoach> {
       if (response.statusCode == 200) {
         var responseData = await response.stream.bytesToString();
         var data = json.decode(responseData);
-        return data['result']; // Assuming the result is returned in the "result" field
+        return data['result'] ?? 'No result returned.';
       } else {
-        return 'Error: Unable to process the video. Status code: ${response.statusCode}';
+        return 'Error: Status code ${response.statusCode}';
       }
     } catch (e) {
-      return 'Error: Unable to connect to the server';
+      return 'Error: Could not connect to server.';
     }
   }
 
@@ -152,16 +147,21 @@ class _AicoachState extends State<Aicoach> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color.fromARGB(
                                   255,
-                                  32,
-                                  30,
-                                  30,
+                                  31,
+                                  26,
+                                  26,
+                                ),
+                                foregroundColor: Colors.white,
+                                side: const BorderSide(
+                                  color: Colors.red,
+                                  width: 2,
                                 ),
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 30,
                                   vertical: 12,
                                 ),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(30),
                                 ),
                               ),
                               child: const Text("Browse files"),
@@ -209,28 +209,42 @@ class _AicoachState extends State<Aicoach> {
                                   _videoFile != null && !isProcessing
                                       ? startAnalysis
                                       : null,
-                              style: ElevatedButton.styleFrom(
+                              style: ButtonStyle(
                                 backgroundColor:
-                                    _videoFile != null && !isProcessing
-                                        ? const Color.fromARGB(255, 56, 53, 54)
-                                        : const Color.fromARGB(
-                                          255,
-                                          197,
-                                          184,
-                                          184,
-                                        ),
-                                foregroundColor: const Color.fromARGB(
-                                  255,
-                                  34,
-                                  33,
-                                  33,
+                                    MaterialStateProperty.resolveWith<Color>((
+                                      Set<MaterialState> states,
+                                    ) {
+                                      return const Color.fromARGB(
+                                        255,
+                                        31,
+                                        26,
+                                        26,
+                                      );
+                                    }),
+                                foregroundColor:
+                                    MaterialStateProperty.resolveWith<Color>((
+                                      Set<MaterialState> states,
+                                    ) {
+                                      return Colors.white;
+                                    }),
+                                side: MaterialStateProperty.resolveWith<
+                                  BorderSide
+                                >((Set<MaterialState> states) {
+                                  return const BorderSide(
+                                    color: Colors.red,
+                                    width: 2,
+                                  );
+                                }),
+                                padding: MaterialStateProperty.all(
+                                  const EdgeInsets.symmetric(
+                                    horizontal: 30,
+                                    vertical: 12,
+                                  ),
                                 ),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 40,
-                                  vertical: 14,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
+                                shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                  ),
                                 ),
                               ),
                               child:
@@ -245,32 +259,37 @@ class _AicoachState extends State<Aicoach> {
                       ),
                     ),
                     const SizedBox(height: 40),
-                    const Text(
-                      "Result",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      analysisResult.isEmpty ? 'No result yet' : analysisResult,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    const SizedBox(height: 100),
+
+                    // Result Section
+                    if (hasResult) ...[
+                      const Text(
+                        "Result",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 400,
+                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.pinkAccent),
+                        ),
+                        child: SingleChildScrollView(
+                          child: Text(
+                            analysisResult,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
                   ],
                 ),
               ),
             ),
           ),
-        ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.pinkAccent,
-        unselectedItemColor: Colors.white,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.event), label: "Event"),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: "Trainmap"),
-          BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chats"),
         ],
       ),
     );
