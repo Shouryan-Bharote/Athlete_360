@@ -19,7 +19,7 @@ class GlowButton extends StatelessWidget {
   final TextStyle buttonTextStyle; // New property for button text style
 
   const GlowButton({
-    Key? key,
+    super.key,
     required this.headingText,
     required this.buttonText, // Updated constructor
     required this.onPressed,
@@ -45,7 +45,7 @@ class GlowButton extends StatelessWidget {
       color: Colors.white,
       fontSize: 16.0,
     ), // Default style
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class GlowButton extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(borderRadius),
           ),
-          child: Container(
+          child: SizedBox(
             width: width,
             height: height,
             child: Column(

@@ -1,10 +1,8 @@
-import 'package:athlete_360/Widgets/glow_button_updated.dart';
 import 'package:athlete_360/Widgets/customNavigationBar.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class PlayerBase extends StatefulWidget {
   final String title;

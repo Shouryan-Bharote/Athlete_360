@@ -13,7 +13,7 @@ class GlowButton extends StatelessWidget {
   final TextStyle textStyle;
 
   const GlowButton({
-    Key? key,
+    super.key,
     required this.headingText,
     required this.text,
     required this.onPressed,
@@ -22,9 +22,12 @@ class GlowButton extends StatelessWidget {
     this.height = 50.0,
     this.borderRadius = 8.0,
     this.textAlignment = Alignment.center,
-    this.textPadding = const EdgeInsets.only(top: 0, left: 8.0), // Added padding
+    this.textPadding = const EdgeInsets.only(
+      top: 0,
+      left: 8.0,
+    ), // Added padding
     this.textStyle = const TextStyle(color: Colors.white, fontSize: 16.0),
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,8 @@ class GlowButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-          ), backgroundColor: Colors.transparent,
+          ),
+          backgroundColor: Colors.transparent,
           padding: EdgeInsets.all(5),
           elevation: 0,
         ),
@@ -49,7 +53,7 @@ class GlowButton extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(borderRadius),
           ),
-          child: Container(
+          child: SizedBox(
             width: width,
             height: height,
             // alignment: textAlignment,
@@ -57,10 +61,7 @@ class GlowButton extends StatelessWidget {
               padding: textPadding,
               child: Align(
                 alignment: textAlignment,
-                child: Text(
-                  headingText,
-                  style: textStyle,
-                ),
+                child: Text(headingText, style: textStyle),
               ),
             ),
           ),

@@ -16,7 +16,6 @@ import 'package:athlete_360/Pages/LoginScreen.dart';
 
 // Firebase
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:athlete_360/Pages/Aicoach.dart';
 
 class MainRouter {

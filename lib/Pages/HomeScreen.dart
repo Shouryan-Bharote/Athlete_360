@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:athlete_360/widgets/glow_button_updated.dart'; // Your custom button
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -13,7 +15,6 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         // The Search Bar
         Container(
-          
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Color.fromRGBO(42, 41, 41, 1),
@@ -49,11 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
-              buttonTextStyle: TextStyle(
-                color: Colors.black54,
-                fontSize: 15,
-              ),
-              gradientColors: [Color.fromRGBO(218, 190, 104, 1), Color.fromRGBO(255, 255, 255, 1)],
+              buttonTextStyle: TextStyle(color: Colors.black54, fontSize: 15),
+              gradientColors: [
+                Color.fromRGBO(218, 190, 104, 1),
+                Color.fromRGBO(255, 255, 255, 1),
+              ],
               width: 500,
               height: 100,
               borderRadius: 30.0,
@@ -74,11 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
-              buttonTextStyle: TextStyle(
-                color: Colors.black54,
-                fontSize: 15,
-              ),
-              gradientColors: [Color.fromRGBO(42, 183, 183, 1), Color.fromRGBO(255, 255, 255, 1)],
+              buttonTextStyle: TextStyle(color: Colors.black54, fontSize: 15),
+              gradientColors: [
+                Color.fromRGBO(42, 183, 183, 1),
+                Color.fromRGBO(255, 255, 255, 1),
+              ],
               width: 500,
               height: 100,
               borderRadius: 30.0,
@@ -95,10 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   'Athletic Events',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
               ],
             ),

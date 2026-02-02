@@ -2,8 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hugeicons/hugeicons.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class CoachVenue extends StatefulWidget {
   const CoachVenue({super.key});
@@ -15,11 +13,10 @@ class CoachVenue extends StatefulWidget {
 class _CoachVenueState extends State<CoachVenue> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
       extendBody: true,
-    
+
       // ✅ BODY
       body: SingleChildScrollView(
         // padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -62,7 +59,8 @@ class _CoachVenueState extends State<CoachVenue> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const BookVenuePage()),
+                    builder: (context) => const BookVenuePage(),
+                  ),
                 );
               },
               child: buildFeatureCard('assets/CoachVenue/book_Venue.png', ''),
@@ -85,7 +83,6 @@ class _CoachVenueState extends State<CoachVenue> {
           ],
         ),
       ),
-
     );
   }
 
@@ -95,10 +92,7 @@ class _CoachVenueState extends State<CoachVenue> {
       height: 110,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.fill,
-        ),
+        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.fill),
       ),
       alignment: Alignment.center,
       child: Container(
@@ -136,13 +130,7 @@ class _CoachVenueState extends State<CoachVenue> {
       ),
       child: Stack(
         children: [
-          Positioned(
-            left: 12,
-            top: 12,
-            child: CircleAvatar(
-              radius: 28,
-            ),
-          ),
+          Positioned(left: 12, top: 12, child: CircleAvatar(radius: 28)),
           Positioned(
             left: 90,
             top: 16,
@@ -152,9 +140,10 @@ class _CoachVenueState extends State<CoachVenue> {
                 Text(
                   'Game Max',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Row(
                   children: [
@@ -177,19 +166,22 @@ class _CoachVenueState extends State<CoachVenue> {
           Positioned(
             top: 12,
             right: 12,
-            child: Icon(Icons.favorite, color: const Color.fromARGB(255, 248, 3, 3), fill: sqrt1_2,),
+            child: Icon(
+              Icons.favorite,
+              color: const Color.fromARGB(255, 248, 3, 3),
+              fill: sqrt1_2,
+            ),
           ),
           Positioned(
             bottom: 12,
             right: 12,
             child: ElevatedButton(
-              onPressed: () {
-                
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.redAccent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
               child: Text('Book Venue'),
             ),

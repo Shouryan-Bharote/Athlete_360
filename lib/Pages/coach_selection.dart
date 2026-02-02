@@ -14,12 +14,11 @@ class CoachScreen extends StatefulWidget {
 class _CoachScreenState extends State<CoachScreen> {
   @override
   Widget build(BuildContext context) {
-    var _currentIndex=2;
+    var currentIndex = 2;
     return Scaffold(
       backgroundColor: Color.fromRGBO(18, 18, 18, 1), // Dark background
       extendBody: true,
 
-      
       // ✅ BODY
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
@@ -171,8 +170,6 @@ class _CoachScreenState extends State<CoachScreen> {
           ],
         ),
       ),
-
-      
     );
   }
 
